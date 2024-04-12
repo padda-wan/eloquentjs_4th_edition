@@ -1,0 +1,25 @@
+{
+  "name": "eloquentjs-fourth-edition-repo",
+  "version": "1.0.0",
+  "description": "Code for the free book - Eloquent Javascript",
+  "type": "module",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "start:dev": "nodemon ts-node src/index.ts",
+    "test": "jest",
+    "test:dev": "jest --watch"
+  },
+  "author": "https://github.com/padda-wan",
+  "license": "ISC",
+  "dependencies": {
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "nodemon": "^3.1.0"
+  },
+  "nodemonConfig": {
+    "ext": "ts,json"
+  }
+}
