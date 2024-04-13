@@ -30,15 +30,23 @@ const reverseArray = (array: Array<string>) => {
   return reversedArray;
 }
 
-const reverseArrayInPlace = (array: Array<string>) => {
-  array.unshift(array.pop());
-  return [];
-  return reverseArrayInPlace(array);
+const reverseArrayInPlace = (array: Array<any>) => {
+  for (let i = 0; i <= Math.floor(array.length / 2); i++) {
+    let tempVal = array[i];
+    array[i] = array[array.length - 1 - i];
+    array[array.length - 1 - i] = tempVal;
+  }
+  return array;
+}
+
+const arrayToList = () => {
+  return {};
 }
 
 export {
   range,
   sum,
   reverseArray,
-  reverseArrayInPlace
+  reverseArrayInPlace,
+  arrayToList
 };

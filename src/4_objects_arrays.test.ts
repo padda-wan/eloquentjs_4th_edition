@@ -22,13 +22,13 @@ describe("Objects and arrays - Sum of a range", () => {
   });
 });
 
-describe("Objects and arrays - Reversing an array", () => {
+describe("Data - Reversing an array", () => {
   it("should return a reversed array", () => {
     const arr = reverseArray(["A", "B", "C"]);
     expect(arr).toEqual(["C", "B", "A"]);
   });
-  it.skip("should return a reversed array in place", () => {
-    const arr = reverseArrayInPlace(["A", "B", "C"]);
-    expect(arr).toEqual(["C", "B", "A"]);
+  it("should return a reversed array in place", () => {
+    const arr = reverseArrayInPlace([1, 2, 3, 4, 5]);
+    expect(arr).toStrictEqual([5, 4, 3, 2, 1]);
   });
 });
