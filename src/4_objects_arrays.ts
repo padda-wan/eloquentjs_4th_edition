@@ -39,8 +39,73 @@ const reverseArrayInPlace = (array: Array<any>) => {
   return array;
 }
 
-const arrayToList = () => {
-  return {};
+const arrayToList = (array: Array<any>) => {
+  let prevObj = { value: undefined, rest: null };
+  for (let i = array.length - 1; i > -1; i--) {
+    prevObj = prepend(
+      array[i],
+      array.length - 1 == i ? null : prevObj
+    )
+  }
+  return prevObj;
+}
+
+interface linkedList {
+  value: number;
+  rest: linkedList | null;
+}
+
+const prepend = (element: number, list: linkedList | null) => {
+  return {
+    value: element,
+    rest: list
+  };
+}
+
+const nth = (list: linkedList, index: number) => {
+  let currentIndex = 0;
+  const iter = (list: linkedList) => {
+    if (currentIndex == index) return list.value;
+    while (currentIndex !== index) {
+      if (list.rest === null) return undefined;
+      currentIndex++;
+      return iter(list.rest);
+    }
+  }
+  return iter(list);
+}
+
+const listToArray = (list: linkedList) => {
+  let array = [];
+  const accumulator = (list: linkedList) => {
+    array.push(list.value);
+    if (list.rest !== null) return accumulator(list.rest);
+    if (list.rest === null) return array;
+  }
+  return accumulator(list)
+}
+
+const deepEqual = (object_1: any, object_2: any): boolean => {
+  const areObjects = typeof object_1 == "object" &&
+    object_1 != null &&
+    typeof object_2 == "object" &&
+    object_2 != null;
+
+  if (!areObjects) return object_1 === object_2;
+
+  const object1Keys = Object.keys(object_1);
+  const object2Keys = Object.keys(object_2);
+
+  if (object1Keys.length != object2Keys.length) {
+    return false;
+  }
+
+  for (let i = 0; i < object1Keys.length; i++) {
+    if (object1Keys[i] != object2Keys[i]) return false;
+    if (!deepEqual(object_1[object1Keys[i]], object_2[object2Keys[i]])) return false;
+  }
+
+  return true;
 }
 
 export {
@@ -48,5 +113,9 @@ export {
   sum,
   reverseArray,
   reverseArrayInPlace,
-  arrayToList
+  arrayToList,
+  listToArray,
+  prepend,
+  nth,
+  deepEqual
 };
