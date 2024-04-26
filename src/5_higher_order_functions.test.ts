@@ -2,7 +2,8 @@ import {
   getFirstElement,
   flatten,
   loop,
-  every
+  every,
+  dominantDirection
 } from './5_higher_order_functions';
 
 describe("Higher order functions - custom tests", () => {
@@ -25,5 +26,13 @@ describe("Higher order functions - everything", () => {
     expect(every([1, 3, 5], n => n < 10)).toEqual(true);
     expect(every([2, 4, 16], n => n < 10)).toEqual(false);
     expect(every([], n => n < 10)).toEqual(true);
+  });
+});
+describe("Higher order functions - dominant writing direction", () => {
+  it("should return ltr", () => {
+    expect(dominantDirection("Hello!")).toEqual('ltr');
+  });
+  it("should return rtl", () => {
+    expect(dominantDirection("Hey, مساء الخير")).toEqual('rtl');
   });
 });
